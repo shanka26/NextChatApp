@@ -18,12 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" >
-      <div className="flex flex-col">
-      <Nav/>
-
-
-      <body className={inter.className}>{children}</body>
-      </div>
+        <body className={inter.className} >
+          <Nav/>
+          {children}</body>
     </html>
   );
 }

@@ -1,31 +1,45 @@
 'use client';
-import { sql } from "@vercel/postgres";
-import { db } from "@vercel/postgres";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPost, getLoggedIn, getPosts } from "../api/add-pet/route";
+import { RecordModel } from "pocketbase";
 export default function Page() {
 
-    
-    let [title,setTitle]=useState("")
-    let [body,setBody]=useState("")
+    let [posts ,setPosts]=useState([] as RecordModel[])
+ 
   
-    const  post = async ()=>{
-        let client = await db.connect()
-        await client.sql `Insert into posts (title,body) values(${title}${body})`}
+
+      const fetchPosts = async ()=> {
+        try {
+          posts.length===0?setPosts(await getPosts()):null
+          console.log("fetch")
+          }
+      catch (error) {
+          console.error('Error fetching posts:', error);
+      }
+  }
+
+      useEffect( ()=>{
+       fetchPosts()
+       console.log(posts)
+      },[])
+ 
+ 
+
     return (
         <div>
-
-            add title
-            <input value={title} onKeyDown={(e)=>{setTitle(title+e.key)}}>
+{ 
             
-            </input>
+          posts.map((p,i)=>(
 
-            add body
-            <input className="input" value={body} onKeyDown={(e)=>{setBody(body+e.key)}}>
-            
-            </input>
-            <button onClick={post}>
-                postpost
-            </button>
+            <div key={i}>
+                <h5>{p.title}</h5>
+                <p>{p.body}</p>
+             
+            </div>
+          )) 
+         
+            }
+
 
         </div>
     );
