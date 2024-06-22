@@ -1,53 +1,70 @@
 'use client';
 import { useEffect, useState } from "react";
-import { createPost, getLoggedIn, getPosts } from "../api/add-pet/route";
-import { RecordModel } from "pocketbase";
-import Pocketbase from "pocketbase";
-
+import { createPost, getLoggedIn } from "../api/add-pet/route";
+import Link from "next/link";
 export default function Page() {
 
-    let [posts ,setPosts]=useState([] as RecordModel[])
- 
-  
 
-      const fetchPosts = async ()=> {
-        try {
-          posts.length===0?setPosts(await getPosts()):null
-          console.log("fetch")
-          }
-      catch (error) {
-          console.error('Error fetching posts:', error);
+    let [loggedIn ,setLoggedIn]=useState(false)
+    let [username ,setUsername]=useState("")
+
+    const isLoggedIn = ()=>{
+        let auth = getLoggedIn()
+        setLoggedIn(auth?auth.isValid:false)
+        setUsername(auth?auth.model?.username:null)
       }
-  }
 
-      useEffect( ()=>{
-       fetchPosts()
-       console.log(posts)
-      })
- 
+      useEffect(()=>{
+        isLoggedIn()
+        
+      },[])
+    
+
+    
+    let [title,setTitle]=useState("")
+    let [body,setBody]=useState("")
  
 
     return (
-        <div className="grid grid-cols-1 gap-4 justify-center place-items-center h-dvh bg-slate-800">
-{ 
+        <div className="grid grid-cols-4  gap-4 justify-center place-items-center h-vh bg-slate-800">
+<div ></div>
+
+
+{
+            loggedIn?
+
+
             
-          posts.map((post,i)=>(
+                
+          
+            <div className="col-span-2 h-dvh flex-col bg-slate-300 min-w-full text-center flex p-2 overflow-auto">
 
-            <div key={i} className="card w-96 bg-neutral text-neutral-content p-4 ">
-              <div className="card-body items-center text-center">
-                <h2 className="card-title">{post.title}</h2>
-                <p className="max-w-80 truncate">{post.body}</p>
-                <div className="card-actions justify-end">
-                  <button className="btn btn-primary">Accept</button>
-                  <button className="btn btn-ghost">Deny</button>
-                </div>
+
+            <div  className=" flex flex-col p-2 min-h-[65vh] m-4 bg-slate-500">
+              <div className="bg-blue-800 h-[20%] p-2  flex items-center justify-center">
+              Title
+              <input value={title} onChange={(e)=>{setTitle(e.target.value)}}/>
               </div>
+
+
+              <div className="bg-blue-950 h-[80%] p-2">
+              Body 
+              <input className="input" value={body} onChange={(e)=>{setBody(e.target.value)}}/>
+              </div>
+             
+              <button className="btn" onClick={()=>{createPost(title,body,username);}}> </button>
             </div>
-          )) 
-         
-            }
 
+            </div>
+            
+        :<Link href="/">
+            PLease sign in
+        </Link>
+                }
 
+        <div ></div>
         </div>
+
+
     );
 }

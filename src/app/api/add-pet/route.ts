@@ -23,10 +23,12 @@ return resultList.items
 const createPost = async (title:string,body:string,author:string)=>{
   const pb = new PocketBase('http://127.0.0.1:8090');
   let data = {
-    "Title": title,
-    "Body": body,
+    "title": title,
+    "body": body,
     "author": author
 };
+
+console.log(data)
   await pb.collection('Posts').create(data);
 }
 

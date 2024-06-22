@@ -31,8 +31,8 @@ export default function Nav() {
             </button>
 
             <button className="btn">
-            <Link href="/post">
-                POST
+            <Link href="/feed">
+                FEED
                 </Link>
             </button>
             
@@ -40,6 +40,13 @@ export default function Nav() {
             
                 {!loggedIn?"login":"logout"}
                 
+            </button>
+
+
+            <button className="btn" onClick={()=>{!loggedIn?router.push('/'):logout()}}>
+            <Link href="/post">
+                POST
+                </Link>
             </button>
 
             

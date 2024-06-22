@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { auth, getLoggedIn, createAuth } from "./api/add-pet/route";
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
 
@@ -9,16 +10,27 @@ export default function Home() {
   let [email,setEmail]=useState("")
   let [password,setPassword]=useState("")
   let [confirmPassword,setConfirmPassword]=useState("")
+  let router =  useRouter()
 
   const isLoggedIn = ()=>{
     let auth = getLoggedIn()
     setLoggedIn(auth?auth.isValid:false)
+    console.log(auth.isValid)
+    
   }
-
+ 
 
   useEffect(()=>{
-    isLoggedIn()
-  },[])
+// console.log("refrsh"+isLoggedIn)
+    
+  })
+
+  useEffect(()=>{
+    router.refresh()
+
+    
+  },[loggedIn])
+ 
   return (
     <div className="flex justify-center h-100vh">
       
@@ -38,7 +50,7 @@ export default function Home() {
 
 
         <button className="btn" onClick={()=>{createAuth(email,password,confirmPassword); isLoggedIn()}}>Register</button>
-        <button className="btn" onClick={()=>{auth(email,password); isLoggedIn()}}>Sign In</button>
+        <button className="btn" onClick={()=>{auth(email,password).then(()=>isLoggedIn())}}>Sign In</button>
       </div>
       
       :
