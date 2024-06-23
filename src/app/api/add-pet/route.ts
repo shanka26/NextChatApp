@@ -18,18 +18,27 @@ return resultList.items
 
 }
 
+const getMyPosts = async (username:string)=>{
+  const pb = new PocketBase('http://127.0.0.1:8090');
+const resultList = await pb.collection('Posts').getList(1, 50, {
+  filter: 'author = '+username,
+});
+return resultList.items
+
+}
 
 
-const createPost = async (title:string,body:string,author:string)=>{
+
+
+const createPost = async (title:string,body:string)=>{
   const pb = new PocketBase('http://127.0.0.1:8090');
   let data = {
     "title": title,
     "body": body,
-    "author": author
+    "author": pb.authStore.model?.username
 };
-
-console.log(data)
   await pb.collection('Posts').create(data);
+  console.log(data)
 }
 
 
@@ -68,6 +77,7 @@ const auth = async(email:string,password:string)=>{
   const pb = new PocketBase('http://127.0.0.1:8090');
 await pb.collection('users').authWithPassword(email,password)
 
+return(pb.authStore)
 }
 
 const getLoggedIn = ()=>{const pb = new PocketBase('http://127.0.0.1:8090'); return pb.authStore}

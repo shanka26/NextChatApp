@@ -2,25 +2,13 @@
 import { useEffect, useState } from "react";
 import { createPost, getLoggedIn } from "../api/add-pet/route";
 import Link from "next/link";
+import { userStore } from "../store/userStore";
 export default function Page() {
 
 
-    let [loggedIn ,setLoggedIn]=useState(false)
+    const loggedIn = userStore((state:any)=>state.loggedIn)
     let [username ,setUsername]=useState("")
 
-    const isLoggedIn = ()=>{
-        let auth = getLoggedIn()
-        setLoggedIn(auth?auth.isValid:false)
-        setUsername(auth?auth.model?.username:null)
-      }
-
-      useEffect(()=>{
-        isLoggedIn()
-        
-      },[])
-    
-
-    
     let [title,setTitle]=useState("")
     let [body,setBody]=useState("")
  
@@ -52,7 +40,7 @@ export default function Page() {
               <input className="input" value={body} onChange={(e)=>{setBody(e.target.value)}}/>
               </div>
              
-              <button className="btn" onClick={()=>{createPost(title,body,username);}}> </button>
+              <button className="btn" onClick={async ()=>{await createPost(title,body);setTitle("");setBody("")}}> </button>
             </div>
 
             </div>

@@ -3,33 +3,18 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { auth, getLoggedIn, createAuth } from "./api/add-pet/route";
 import { useRouter } from 'next/navigation'
+import { userStore } from "./store/userStore";
 
 export default function Home() {
 
-  let [loggedIn ,setLoggedIn]=useState(false)
+const loggedIn = userStore((state:any)=>state.loggedIn)
+const setLoggedIn = userStore((state:any)=>state.setLoggedIn)
+
   let [email,setEmail]=useState("")
   let [password,setPassword]=useState("")
   let [confirmPassword,setConfirmPassword]=useState("")
   let router =  useRouter()
 
-  const isLoggedIn = ()=>{
-    let auth = getLoggedIn()
-    setLoggedIn(auth?auth.isValid:false)
-    console.log(auth.isValid)
-    
-  }
- 
-
-  useEffect(()=>{
-// console.log("refrsh"+isLoggedIn)
-    
-  })
-
-  useEffect(()=>{
-    router.refresh()
-
-    
-  },[loggedIn])
  
   return (
     <div className="flex justify-center h-100vh">
@@ -49,8 +34,8 @@ export default function Home() {
         <input value={confirmPassword} onChange={(e)=>{setConfirmPassword(e.target.value)}}/>
 
 
-        <button className="btn" onClick={()=>{createAuth(email,password,confirmPassword); isLoggedIn()}}>Register</button>
-        <button className="btn" onClick={()=>{auth(email,password).then(()=>isLoggedIn())}}>Sign In</button>
+        <button className="btn" onClick={()=>{createAuth(email,password,confirmPassword)}}>Register</button>
+        <button className="btn" onClick={async()=>{let usr = await auth(email,password); setLoggedIn(usr.isValid)}}>Sign In</button>
       </div>
       
       :

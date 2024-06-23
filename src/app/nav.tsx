@@ -4,27 +4,22 @@ import { useEffect, useState } from "react";
 import { getLoggedIn, logout } from "./api/add-pet/route";
 import { useRouter } from 'next/navigation'
 import { get } from "http";
+import { userStore } from "./store/userStore";
 
 export default function Nav() {
-    let [loggedIn ,setLoggedIn]=useState(false)
+    const loggedIn = userStore((state:any)=>state.loggedIn)
+    const setLoggedIn = userStore((state:any)=>state.setLoggedIn)
     const router = useRouter()
-
-
-    const isLoggedIn = ()=>{
-        let auth = getLoggedIn()
-        setLoggedIn(auth?auth.isValid:false)
-        console.log(auth)
-      }
-
-      useEffect(()=>{
-        isLoggedIn()
-  
-      },[])
-
+    const getIsLoggedIn = userStore((state:any)=>state.isLoggedIn)
+    
+const signOut = async()=>{
+    await logout()
+    setLoggedIn(false)
+}
 
     return (
         <nav className="w-screen bg-blue-500" >
-            <button className="btn">
+            <button className="btn" onClick={()=>console.log("s")}>
             <Link href="/">
                 HOME
                 </Link>            
@@ -36,14 +31,14 @@ export default function Nav() {
                 </Link>
             </button>
             
-            <button className="btn" onClick={()=>{!loggedIn?router.push('/'):logout()}}>
+            <button className="btn" onClick={()=>{!loggedIn?router.push('/'):signOut()}}>
             
                 {!loggedIn?"login":"logout"}
                 
             </button>
 
 
-            <button className="btn" onClick={()=>{!loggedIn?router.push('/'):logout()}}>
+            <button className="btn">
             <Link href="/post">
                 POST
                 </Link>
