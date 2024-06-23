@@ -38,7 +38,7 @@ export default function Page() {
           posts.map((post,i)=>(
 
             <div key={i} className=" flex flex-col p-2">
-              <ChatBubble username="sss" body={post.body} isSender={false} />
+              <ChatBubble username={post.author} body={post.body} isSender={false} />
             </div>
           )) 
          
