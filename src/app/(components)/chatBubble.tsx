@@ -11,7 +11,7 @@ interface ChatBubbleProps {
 const ChatBubble: React.FC<ChatBubbleProps> = ({ username, body ,isSender}) => {
   return (
     
-    <div className="text-left text-white">
+    <div className={`text-white ${isSender?'text-right':'text-left'}`}>
         {username}
         <div className={`chat ${isSender?'chat-end':'chat-start'}  text-white`}>
       

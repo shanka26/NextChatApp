@@ -35,7 +35,7 @@ const setLoggedIn = userStore((state:any)=>state.setLoggedIn)
 
 
         <button className="btn" onClick={()=>{createAuth(email,password,confirmPassword)}}>Register</button>
-        <button className="btn" onClick={async()=>{let usr = await auth(email,password); setLoggedIn(usr.isValid)}}>Sign In</button>
+        <button className="btn" onClick={async()=>{let usr = await auth(email,password); setLoggedIn(usr.isValid,usr?.model?.username)}}>Sign In</button>
       </div>
       
       :

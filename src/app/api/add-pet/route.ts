@@ -30,11 +30,11 @@ return resultList.items
 
 
 
-const createPost = async (title:string,body:string)=>{
+const createMessage = async (message:string)=>{
   const pb = new PocketBase('http://127.0.0.1:8090');
   let data = {
-    "title": title,
-    "body": body,
+    
+    "message": message,
     "author": pb.authStore.model?.username
 };
   await pb.collection('Posts').create(data);
@@ -91,6 +91,6 @@ const logout = ()=>{const pb = new PocketBase('http://127.0.0.1:8090');pb.authSt
 
 
 
-export {createPost,googleAuth,auth,getLoggedIn,logout,createAuth,getPosts}
+export {createMessage,googleAuth,auth,getLoggedIn,logout,createAuth,getPosts}
 
 

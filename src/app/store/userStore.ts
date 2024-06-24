@@ -9,8 +9,10 @@ import {create} from 'zustand'
 
 export const userStore = create((set)=>({
      loggedIn:false,
-     setLoggedIn: (l:boolean)=>{
+     user:"",
+     setLoggedIn: (l:boolean,usr:string)=>{
         set({loggedIn: l})
+        set({user: usr})
     }
     
 }))
