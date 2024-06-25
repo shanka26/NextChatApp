@@ -42,7 +42,7 @@ export default function Page() {
         <div className="grid grid-cols-4  h-full gap-4 justify-center place-items-center  bg-slate-800">
           <div ></div>
           
-          <div className="col-span-2 h-dvh flex-col min-w-full text-center flex p-2 overflow-auto align-bottom justify-end pb-24">
+          <div className=" shadow-lg max-h-52 col-span-2  flex-col min-w-full text-center flex p-2 overflow-auto align-bottom justify-end pb-24">
             
 {  
           messageList.map((post:any,i:number)=>(
