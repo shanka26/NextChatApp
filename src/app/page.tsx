@@ -19,31 +19,8 @@ const setLoggedIn = userStore((state:any)=>state.setLoggedIn)
   return (
     <div className="flex justify-center h-100vh">
       
-      
-      { !loggedIn?
-      
-      <div>
-        <p>Email:</p>
-        <input value={email} onChange={(e)=>{setEmail(e.target.value)}}/>
-        
-        
-        <p>Password:</p>
-        <input value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
+    mwahhahahahaha
 
-        <p>Confirm Password:</p>
-        <input value={confirmPassword} onChange={(e)=>{setConfirmPassword(e.target.value)}}/>
-
-
-        <button className="btn" onClick={()=>{createAuth(email,password,confirmPassword)}}>Register</button>
-        <button className="btn" onClick={async()=>{let usr = await auth(email,password); setLoggedIn(usr.isValid,usr?.model?.username)}}>Sign In</button>
-      </div>
-      
-      :
-      
-      <h2>This is Home</h2>
-
-      }
-      
           </div>
       
       
