@@ -31,10 +31,10 @@ export default function Page() {
 
   return (
     
-    <div className="grid grid-cols-4 h-screen gap-4 justify-center place-items-center bg-slate-800">
+    <div className="grid grid-cols-4 h-screen gap-4 justify-center place-items-center bg-base-200">
       <div></div>
-      <div className="shadow-2xl col-span-2 flex flex-col w-full max-h-[92vh] p-2 overflow-hidden">
-        <div className="flex-grow overflow-y-auto">
+      <div className=" col-span-2 flex flex-col w-full h-screen p-2 overflow-hidden ">
+        <div className="flex-grow max-h-[80vh] overflow-y-auto shadow-2xl">
           {messageList.map((post: any, i: number) => (
             <div key={i} className="p-2">
               <ChatBubble username={post.author} body={post.message} isSender={post.author === username} />

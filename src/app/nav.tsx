@@ -5,22 +5,40 @@ import { getLoggedIn, logout } from "./api/add-pet/route";
 import { useRouter } from 'next/navigation'
 import { get } from "http";
 import { userStore } from "./store/userStore";
+import { themeChange } from 'theme-change';
 
 export default function Nav() {
     const loggedIn = userStore((state:any)=>state.loggedIn)
     const setLoggedIn = userStore((state:any)=>state.setLoggedIn)
     const router = useRouter()
     const getIsLoggedIn = userStore((state:any)=>state.isLoggedIn)
+
+    const [theme, setTheme] = useState(
+        localStorage?.getItem('theme')||""
+      );
     
-const signOut = async()=>{
-    await logout()
-    setLoggedIn(false)
-}
 
+      const toggleTheme = () => {
+        setTheme(theme === 'dim' ? 'cupcake' : 'dim');
+      }; 
+
+      const signOut = async()=>{
+          await logout()
+          setLoggedIn(false)
+      }
+
+
+
+/*Initialize under useEffect */
+
+useEffect(() => {
+    localStorage.setItem('theme', JSON.stringify(theme));
+    document.querySelector('html')?.setAttribute('data-theme', theme);
+  }, [theme]);
     return (
-        <nav className="flex flex-row justify-between w-screen bg-blue-500 p-4 space-x-2" >
+        <nav className="flex flex-row justify-between w-screen bg-primary p-4 space-x-2" >
 
-            <div className="space-x-3 flex flex-row">
+            <div className="space-x-3 flex flex-row px-4 border-out">
             <button className="btn" onClick={()=>console.log("s")}>
             <Link href="/">
                 HOME
@@ -32,13 +50,14 @@ const signOut = async()=>{
                 FEED
                 </Link>
             </button>
-
-
             <label className="pl-4 grid cursor-pointer place-items-center">
+
   <input
+  
     type="checkbox"
     value="synthwave"
-    className="toggle theme-controller bg-base-content col-span-2 col-start-1 row-start-1" />
+    className="toggle theme-controller bg-base-content col-span-2 col-start-1 row-start-1"
+    onChange={()=>toggleTheme()} />
   <svg
     className="stroke-base-100 fill-base-100 col-start-1 row-start-1"
     xmlns="http://www.w3.org/2000/svg"

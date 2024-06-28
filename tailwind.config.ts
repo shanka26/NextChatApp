@@ -10,13 +10,21 @@ const config: Config = {
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
   },
   plugins: [
-    require('daisyui')
+     // Ensure DaisyUI is included in the plugins array
+    require("@tailwindcss/typography"), require("daisyui")
   ],
+  daisyui: {
+    themes: [
+      "cupcake",
+      "dim"
+    
+    ],
+  },
 };
+
 export default config;

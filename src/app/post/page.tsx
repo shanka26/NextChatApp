@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from "react";
-import { createPost, getLoggedIn } from "../api/add-pet/route";
+import { createMessage, getLoggedIn } from "../api/add-pet/route";
 import Link from "next/link";
 import { userStore } from "../store/userStore";
 export default function Page() {
@@ -40,7 +40,7 @@ export default function Page() {
               <input className="input" value={body} onChange={(e)=>{setBody(e.target.value)}}/>
               </div>
              
-              <button className="btn" onClick={async ()=>{await createPost(title,body);setTitle("");setBody("")}}> </button>
+              <button className="btn" onClick={async ()=>{await createMessage(body);setTitle("");setBody("")}}> </button>
             </div>
 
             </div>
