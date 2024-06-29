@@ -5,7 +5,7 @@ import { auth, getLoggedIn, createAuth } from "../api/add-pet/route";
 import { useRouter } from 'next/navigation'
 import { userStore } from "../store/userStore";
 
-export default function login() {
+export default function Login() {
 
 const loggedIn = userStore((state:any)=>state.loggedIn)
 const setLoggedIn = userStore((state:any)=>state.setLoggedIn)
