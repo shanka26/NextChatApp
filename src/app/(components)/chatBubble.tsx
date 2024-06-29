@@ -11,11 +11,11 @@ interface ChatBubbleProps {
 const ChatBubble: React.FC<ChatBubbleProps> = ({ username, body ,isSender}) => {
   return (
     
-    <div className={`text-white ${isSender?'text-right':'text-left'}`}>
-        {username}
-        <div className={`chat ${isSender?'chat-end':'chat-start'}  text-white`}>
+    <div className={`text-primary ${isSender?'text-right':'text-left'}`}>
+        {!isSender?username:null}
+        <div className={`chat ${isSender?'chat-end':'chat-start'} `}>
       
-      <div className="chat-bubble  bg-green-200 text-black">{body}</div>
+      <div className={` text-primary-content chat-bubble ${isSender?'bg-primary':'bg-secondary'} text-secondary-content`}>{body}</div>
     </div>
     </div>
   );

@@ -31,10 +31,10 @@ export default function Page() {
 
   return (
     
-    <div className="grid grid-cols-4 h-screen gap-4 justify-center place-items-center bg-base-200">
-      <div></div>
-      <div className=" col-span-2 flex flex-col w-full h-screen p-2 overflow-hidden ">
-        <div className="flex-grow max-h-[80vh] overflow-y-auto shadow-2xl">
+    <div className="grid grid-cols-10 h-screen gap-4 justify-center place-items-center bg-base-100">
+      <div className=" col-span-2"></div>
+      <div className=" col-span-6 flex flex-col w-full h-screen  overflow-hidden bg-neutral">
+        <div className="flex-grow max-h-[80vh] overflow-y-auto p-2 ">
           {messageList.map((post: any, i: number) => (
             <div key={i} className="p-2">
               <ChatBubble username={post.author} body={post.message} isSender={post.author === username} />
@@ -42,15 +42,16 @@ export default function Page() {
           ))}
         </div>
 
-        <div className="flex shadow-lg sticky bottom-0 bg-slate-800 p-2 w-full justify-between">
+        <div className="flex border sticky bottom-0 p-2 w-full justify-between gap-2">
           <input
             disabled={!loggedIn}
             value={loggedIn ? message : "Please Sign In"}
+            placeholder="Message..."
             onChange={(e) => setMessage(e.target.value)}
-            className="p-2 border border-gray-300 rounded w-3/4 text-center text-gray-100"
+            className="p-2 border input-primary rounded w-3/4 text-center text-primary "
           />
           <button
-            className="bg-slate-500 text-white p-3 rounded-lg px-6"
+            className="btn btn-outline btn-primary p-3 rounded-lg px-6"
             disabled={!loggedIn}
             onClick={async () => {
               await createMessage(message);
@@ -61,7 +62,7 @@ export default function Page() {
           </button>
         </div>
       </div>
-      <div></div>
+      <div className=" col-span-2"></div>
     </div>
   );
 }

@@ -13,11 +13,8 @@ export default function Nav() {
     const router = useRouter()
     const getIsLoggedIn = userStore((state:any)=>state.isLoggedIn)
 
-    const [theme, setTheme] = useState(
-        localStorage?.getItem('theme')||""
-      );
+    const [theme, setTheme] = useState("");
     
-
       const toggleTheme = () => {
         setTheme(theme === 'dim' ? 'cupcake' : 'dim');
       }; 
@@ -26,6 +23,9 @@ export default function Nav() {
           await logout()
           setLoggedIn(false)
       }
+      useEffect(()=>{
+        setTheme(localStorage?.getItem('theme')||"")
+      },[])
 
 
 

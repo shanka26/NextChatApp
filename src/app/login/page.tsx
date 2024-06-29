@@ -10,14 +10,14 @@ export default function login() {
 const loggedIn = userStore((state:any)=>state.loggedIn)
 const setLoggedIn = userStore((state:any)=>state.setLoggedIn)
 
-  let [email,setEmail]=useState("")
+  let [username,setUsername]=useState("")
   let [password,setPassword]=useState("")
   let [confirmPassword,setConfirmPassword]=useState("")
   let router =  useRouter()
 
  
   return (
-    <div className="flex justify-center h-screen items-start mt-40">
+    <div className="flex justify-center h-screen items-start mt-40 ">
       
       
       
@@ -35,7 +35,7 @@ const setLoggedIn = userStore((state:any)=>state.setLoggedIn)
     <path
       d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
   </svg>
-  <input value={email} type="text" className="grow" placeholder="Username" onChange={(e)=>{setEmail(e.target.value)}} />
+  <input value={username} type="text" className="grow" placeholder="Username" onChange={(e)=>{setUsername(e.target.value)}} />
 </label>
 <label className="input input-bordered flex items-center gap-2">
   <svg
@@ -48,10 +48,12 @@ const setLoggedIn = userStore((state:any)=>state.setLoggedIn)
       d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
       clipRule="evenodd" />
   </svg>
-  <input type="password" className="grow" value={password}  onChange={(e)=>{setPassword(e.target.value)}}/>
+  <input type="password" className="grow" placeholder="Password" value={password}  onChange={(e)=>{setPassword(e.target.value)}}/>
 </label>
-        <button className="btn btn-sm  btn-primary" onClick={()=>{createAuth(email,password,confirmPassword)}}>Register</button>
-        <button className="btn btn-sm btn-outline btn-primary" onClick={async()=>{let usr = await auth(email,password); setLoggedIn(usr.isValid,usr?.model?.username)}}>Sign In</button>
+        <button className="btn btn-sm  btn-primary" 
+        onClick={async()=>{let usr = await createAuth(username,password); setLoggedIn(usr?.isValid,usr?.model?.username),router.push('/feed')}}>Register</button>
+        <button className="btn btn-sm btn-outline btn-primary" 
+        onClick={async()=>{let usr = await auth(username,password); setLoggedIn(usr?.isValid,usr?.model?.username),router.push('/feed')}}>Sign In</button>
       </div>
       
       
