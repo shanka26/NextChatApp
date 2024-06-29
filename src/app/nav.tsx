@@ -1,7 +1,7 @@
 'use client'
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { getLoggedIn, logout } from "./api/add-pet/route";
+import { getLoggedIn, logout } from "./api/add-pet/db";
 import { useRouter } from 'next/navigation'
 import { get } from "http";
 import { userStore } from "./store/userStore";

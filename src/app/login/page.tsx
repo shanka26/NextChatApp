@@ -1,7 +1,7 @@
 'use client'
 import React,{ useEffect, useState } from "react";
 import Image from "next/image";
-import { auth, getLoggedIn, createAuth } from "../api/add-pet/route";
+import { auth, getLoggedIn, createAuth } from "../api/add-pet/db";
 import { useRouter } from 'next/navigation'
 import { userStore } from "../store/userStore";
 

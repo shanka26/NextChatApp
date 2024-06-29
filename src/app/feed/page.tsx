@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from "react";
-import { createMessage, getPosts } from "../api/add-pet/route";
+import { createMessage, getPosts } from "../api/add-pet/db";
 import ChatBubble from "../(components)/chatBubble";
 import { messageStore } from "../store/messageStore";
 import { userStore } from "../store/userStore";
