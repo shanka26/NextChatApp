@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 import Image from "next/image";
 import { auth, getLoggedIn, createAuth } from "../api/add-pet/route";
 import { useRouter } from 'next/navigation'
@@ -12,7 +12,6 @@ const setLoggedIn = userStore((state:any)=>state.setLoggedIn)
 
   let [username,setUsername]=useState("")
   let [password,setPassword]=useState("")
-  let [confirmPassword,setConfirmPassword]=useState("")
   let router =  useRouter()
 
  
