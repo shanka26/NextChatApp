@@ -27,7 +27,7 @@ export default function Page() {
     }, 500);
 
     return () => clearInterval(interval);
-  }, []);
+  }, );
 
   return (
     
