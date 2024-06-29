@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createMessage, getPosts } from "../api/add-pet/db";
 import ChatBubble from "../(components)/chatBubble";
 import { messageStore } from "../store/messageStore";
@@ -11,11 +11,14 @@ export default function Page() {
   const refreshMessages = messageStore((state: any) => state.refreshMessages);
   const loggedIn = userStore((state: any) => state.loggedIn);
   const username = userStore((state: any) => state.user);
+  const chatRef = useRef<HTMLDivElement>(null);
+
 
   const fetchPosts = async () => {
     try {
       const posts = await getPosts();
       refreshMessages(posts);
+      chatRef?.current?.scrollTop?chatRef.current.scrollTop = chatRef.current.scrollHeight:null
     } catch (error) {
       console.error('Error fetching posts:', error);
     }
@@ -25,16 +28,16 @@ export default function Page() {
     const interval = setInterval(() => {
       fetchPosts();
     }, 500);
-
+    chatRef?.current?.scrollTop?chatRef.current.scrollTop = chatRef.current.scrollHeight:null
     return () => clearInterval(interval);
   }, );
 
   return (
     
-    <div className="grid grid-cols-10 h-screen gap-4 justify-center place-items-center bg-base-100">
+    <div  className="grid grid-cols-10 h-screen gap-4 justify-center  bg-base-100">
       <div className=" col-span-2"></div>
-      <div className=" col-span-6 flex flex-col w-full h-screen  overflow-hidden bg-neutral">
-        <div className="flex-grow max-h-[80vh] overflow-y-auto p-2 ">
+      <div className=" col-span-6 flex flex-col w-full max-h-[90vh] justify-between overflow-hidden bg-neutral ">
+        <div ref={chatRef} className="flex-grow max-h-[85vh] overflow-y-auto p-2 items-end ">
           {messageList.map((post: any, i: number) => (
             <div key={i} className="p-2">
               <ChatBubble username={post.author} body={post.message} isSender={post.author === username} />
@@ -42,16 +45,16 @@ export default function Page() {
           ))}
         </div>
 
-        <div className="flex border sticky bottom-0 p-2 w-full justify-between gap-2">
+        <div className="flex border sticky bottom-0 p-2 w-full justify-between gap-2 bg-primary">
           <input
             disabled={!loggedIn}
             value={loggedIn ? message : "Please Sign In"}
             placeholder="Message..."
             onChange={(e) => setMessage(e.target.value)}
-            className="p-2 border input-primary rounded w-3/4 text-center text-primary "
+            className="p-2 border-secondary  input-secondary rounded w-3/4 text-center text-secondary bg-neutral"
           />
           <button
-            className="btn btn-outline btn-primary p-3 rounded-lg px-6"
+            className="btn btn-outline btn-secondary p-3 rounded-lg px-6"
             disabled={!loggedIn}
             onClick={async () => {
               await createMessage(message);

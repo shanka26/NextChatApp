@@ -36,7 +36,7 @@ useEffect(() => {
     document.querySelector('html')?.setAttribute('data-theme', theme);
   }, [theme]);
     return (
-        <nav className="flex flex-row justify-between w-screen bg-primary p-4 space-x-2" >
+        <nav className="flex flex-row justify-between w-screen bg-primary p-4 space-x-2 " >
 
             <div className="space-x-3 flex flex-row px-4 border-out">
             <button className="btn" onClick={()=>console.log("s")}>
