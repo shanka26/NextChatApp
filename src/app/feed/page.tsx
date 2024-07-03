@@ -35,7 +35,7 @@ export default function Page() {
   return (
     
     <div  className="grid grid-cols-10 h-screen gap-4 justify-center  bg-base-100">
-      <div className=" col-span-2"></div>
+      <div className=" col-span-2 shadow-2xl"></div>
       <div className=" col-span-6 flex flex-col w-full max-h-[90vh] justify-between overflow-hidden bg-neutral ">
         <div ref={chatRef} className="flex-grow max-h-[85vh] overflow-y-auto p-2 items-end ">
           {messageList.map((post: any, i: number) => (
@@ -45,16 +45,16 @@ export default function Page() {
           ))}
         </div>
 
-        <div className="flex border sticky bottom-0 p-2 w-full justify-between gap-2 bg-primary">
+        <div className="flex border sticky bottom-0 p-2 w-full justify-between gap-2 bg-primary ">
           <input
             disabled={!loggedIn}
             value={loggedIn ? message : "Please Sign In"}
-            placeholder="Message..."
+            placeholder="Type Message..."
             onChange={(e) => setMessage(e.target.value)}
-            className="p-2 border-secondary  input-secondary rounded w-3/4 text-center text-secondary bg-neutral"
+            className="p-2 input text-left input-ghost rounded w-5/6 text-secondary bg-primary-content"
           />
           <button
-            className="btn btn-outline btn-secondary p-3 rounded-lg px-6"
+            className="btn btn-solid btn-secondary p-3 rounded-lg px-6 w-1/6 "
             disabled={!loggedIn}
             onClick={async () => {
               await createMessage(message);
