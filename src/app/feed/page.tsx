@@ -35,7 +35,7 @@ export default function Page() {
   return (
     
     <div  className="grid grid-cols-10 h-screen gap-4 justify-center  bg-base-100">
-      <div className=" col-span-2 shadow-2xl"></div>
+      <div className=" col-span-2 "></div>
       <div className=" col-span-6 flex flex-col w-full max-h-[90vh] justify-between overflow-hidden bg-neutral ">
         <div ref={chatRef} className="flex-grow max-h-[85vh] overflow-y-auto p-2 items-end ">
           {messageList.map((post: any, i: number) => (
@@ -45,7 +45,7 @@ export default function Page() {
           ))}
         </div>
 
-        <div className="flex border sticky bottom-0 p-2 w-full justify-between gap-2 bg-primary ">
+        <div className="flex border sticky bottom-0 p-2 w-full justify-between gap-2 bg-primary rounded-sma">
           <input
             disabled={!loggedIn}
             value={loggedIn ? message : "Please Sign In"}
@@ -65,7 +65,7 @@ export default function Page() {
           </button>
         </div>
       </div>
-      <div className=" col-span-2"></div>
+      <div className=" col-span-2 "></div>
     </div>
   );
 }
