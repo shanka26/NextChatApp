@@ -17,7 +17,7 @@ const setLoggedIn = userStore((state:any)=>state.setLoggedIn)
 
  
   return (
-    <div className="flex justify-center h-svh  bg-base-300 text-base-content text-5xl p-8">
+    <div className="flex justify-center h-svh  bg-base-300 text-base-content text-2xl p-8">
       
     Welcome To The Big Messy Unmoderated Chat!!
           </div>
