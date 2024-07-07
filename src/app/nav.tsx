@@ -39,7 +39,7 @@ useEffect(() => {
         <nav className="flex flex-row justify-between w-screen bg-primary p-2 md:p-3 space-x-2 " >
 
             <div className="space-x-2 md:space-x-3 flex flex-row md:px-4 border-out">
-            <button className="btn" onClick={()=>console.log("s")}>mbb
+            <button className="btn" onClick={()=>console.log("s")}>
             <Link href="/">
                 HOME
                 </Link>            
