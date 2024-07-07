@@ -34,18 +34,18 @@ export default function Page() {
 
   return (
     
-    <div  className="grid grid-cols-10 h-screen gap-4 justify-center  bg-base-100">
-      <div className=" col-span-2 "></div>
-      <div className=" col-span-6 flex flex-col w-full max-h-[90vh] justify-between overflow-hidden bg-neutral ">
-        <div ref={chatRef} className="flex-grow max-h-[85vh] overflow-y-auto p-2 items-end ">
+    <div  className="grid grid-cols-10 max-h-screen justify-center  bg-base-100">
+      <div className=" col-span-1 md:col-span-2"></div>
+      <div className="  md:col-span-6 col-span-8 flex flex-col w-full max-h-[100vh] justify-between overflow-hidden bg-neutral ">
+        <div ref={chatRef} className="flex-grow h-screen  overflow-y-auto p-2 items-end ">
           {messageList.map((post: any, i: number) => (
             <div key={i} className="p-2">
               <ChatBubble username={post.author} body={post.message} isSender={post.author === username} />
             </div>
-          ))}
+          ))}a
         </div>
 
-        <div className="flex border sticky bottom-0 p-2 w-full justify-between gap-2 bg-primary rounded-sma">
+        <div className="fixed bottom-0 flex border w-[80vw] md:w-[60vw] md:max-h-[10vh] p-3  justify-between gap-2 bg-primary rounded-sma">
           <input
             disabled={!loggedIn}
             value={loggedIn ? message : "Please Sign In"}
@@ -54,8 +54,8 @@ export default function Page() {
             className="p-2 input text-left input-ghost rounded w-5/6 text-secondary bg-primary-content"
           />
           <button
-            className="btn btn-solid btn-secondary p-3 rounded-lg px-6 w-1/6 "
-            disabled={!loggedIn}
+            className={`btn btn-solid btn-secondary p-3 rounded-lg px-6 w-1/6 `}
+            disabled={!loggedIn||message==""}
             onClick={async () => {
               await createMessage(message);
               setMessage("");
@@ -65,7 +65,7 @@ export default function Page() {
           </button>
         </div>
       </div>
-      <div className=" col-span-2 "></div>
+      <div className=" col-span-1 md:col-span-2 "></div>
     </div>
   );
 }
