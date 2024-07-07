@@ -4,6 +4,7 @@ import Image from "next/image";
 import { auth, getLoggedIn, createAuth } from "../api/add-pet/db";
 import { useRouter } from 'next/navigation'
 import { userStore } from "../store/userStore";
+import { error } from "console";
 
 export default function Login() {
 
@@ -12,6 +13,7 @@ const setLoggedIn = userStore((state:any)=>state.setLoggedIn)
 
   let [username,setUsername]=useState("")
   let [password,setPassword]=useState("")
+  let [errorMessage,setErrorMessage]=useState("")
   let router =  useRouter()
 
  
@@ -20,12 +22,13 @@ const setLoggedIn = userStore((state:any)=>state.setLoggedIn)
       
       
       
-      <div className=" bg-base-300 text-base-content shadow-lg flex flex-col border-[primary] rounded-md  h-[35vh] md:h-[40vh] w-[280px] md:w-[400px] p-8 gap-4 text-center "> 
+      <div className=" bg-base-300 text-base-content shadow-lg flex flex-col border-[primary] rounded-md  h-[40vh] md:h-[40vh] w-[280px] md:w-[400px] p-8 gap-4 text-center "> 
       
       <h1 className="text-3xl p-4">Sign In</h1>
       
-      
+      <small className="text-left text-error">{errorMessage}</small>
         <label className="input input-bordered flex items-center gap-2">
+          
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 16 16"
@@ -34,8 +37,12 @@ const setLoggedIn = userStore((state:any)=>state.setLoggedIn)
     <path
       d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
   </svg>
+  
   <input value={username} type="text" className="grow" placeholder="Username" onChange={(e)=>{setUsername(e.target.value)}} />
+
+    
 </label>
+
 <label className="input input-bordered flex items-center gap-2">
   <svg
     xmlns="http://www.w3.org/2000/svg"
