@@ -24,7 +24,7 @@ const setLoggedIn = userStore((state:any)=>state.setLoggedIn)
       
       <div className=" bg-base-300 text-base-content shadow-lg flex flex-col border-[primary] rounded-md  h-[44vh] md:h-[40vh] w-[280px] md:w-[400px] p-8 gap-4 text-center "> 
       
-      <h1 className="text-3xl p-4">Sign In</h1>
+      <h1 className="text-2xl md:text-3xl p-4">Sign In</h1>
       
       <small className="text-left text-error">{errorMessage}</small>
         <label className="input input-bordered flex items-center gap-2">
