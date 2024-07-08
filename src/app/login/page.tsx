@@ -16,6 +16,62 @@ const setLoggedIn = userStore((state:any)=>state.setLoggedIn)
   let [errorMessage,setErrorMessage]=useState("")
   let router =  useRouter()
 
+
+  const setError = (registration:boolean) => {
+    switch (true) {
+      case username==="" && password==="":
+        setErrorMessage("Username and Password are required");
+        break;
+      case username==="":
+        setErrorMessage("Username is required");
+        break;
+      case password==="":
+        setErrorMessage("Password is required");
+        break;
+      case username.length < 5 && registration:
+        setErrorMessage("Username must be at least 5 characters long");
+        break;
+      case password.length < 5 && registration:
+        setErrorMessage("Password must be at least 5 characters long");
+        break;
+      case !registration:
+          setErrorMessage("Please try again. username/password combination may not have been found");
+          break;
+      case  registration:
+          setErrorMessage("An error occurred. Please try again. Username may already be taken");
+          break;      
+      default:
+        setErrorMessage("An error occurred. Please try again. Username may already be taken");
+    }
+  };
+
+  const handleRegister = async () => {
+    try {
+      let usr = await createAuth(username, password);
+      if (usr?.isValid) {
+        setLoggedIn(usr?.isValid, usr?.model?.username);
+        router.push('/feed');
+      } else {
+        throw new Error("Registration failed");
+      }
+    } catch (error: any) {
+      setError(true)
+    }
+  };
+
+  const handleSignIn = async () => {
+    try {
+      let usr = await auth(username, password);
+      if (usr?.isValid) {
+        setLoggedIn(usr?.isValid, usr?.model?.username);
+        router.push('/feed');
+      } else {
+        throw new Error("Login failed");
+      }
+    } catch (error: any) {
+      setError(false);
+    }
+  };
  
   return (
     <div className="flex justify-center h-screen items-start pt-40  bg-base-100">
@@ -57,9 +113,9 @@ const setLoggedIn = userStore((state:any)=>state.setLoggedIn)
   <input type="password" className="grow" placeholder="Password" value={password}  onChange={(e)=>{setPassword(e.target.value)}}/>
 </label>
         <button className="btn btn-sm  btn-primary" 
-        onClick={async()=>{let usr = await createAuth(username,password); setLoggedIn(usr?.isValid,usr?.model?.username),router.push('/feed')}}>Register</button>
+        onClick={handleRegister}>Register</button>
         <button className="btn btn-sm btn-outline btn-primary" 
-        onClick={async()=>{let usr = await auth(username,password); setLoggedIn(usr?.isValid,usr?.model?.username),router.push('/feed')}}>Sign In</button>
+        onClick={async()=>{handleSignIn}}>Sign In</button>
       </div>
       
       
