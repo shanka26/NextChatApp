@@ -34,9 +34,10 @@ export default function Page() {
 
   return (
     
-    <div  className="grid grid-cols-1 md:grid-cols-10 max-h-screen justify-center bg-base-300">
-      <div className="  md:col-span-2"></div>
-      <div className="  md:col-span-10 col-span-8 flex flex-col w-full max-h-[92vh] md:max-h-[90vh] justify-between overflow-hidden bg-neutral ">
+    <div  className="grid grid-cols-12 max-h-screen justify-center bg-base-300">
+
+      <div className="md:col-span-2  col-span-auto bg-blue-950"></div>
+      <div className=" col-span-12 md:col-span-10 flex flex-col w-full max-h-[92vh] md:max-h-[90vh] justify-between overflow-hidden bg-neutral ">
         <div ref={chatRef} className="flex-grow h-screen  overflow-y-auto p-2 items-end ">
           {messageList.map((post: any, i: number) => (
             <div key={i} className="p-2">
@@ -65,7 +66,7 @@ export default function Page() {
           </button>
         </div>
       </div>
-      <div className="  md:col-span-2 "></div>
+      <div className="  col-span-auto  md:col-span-2"></div>
     </div>
   );
 }
