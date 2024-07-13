@@ -47,7 +47,7 @@ useEffect(() => {
 
             <button className="btn">
             <Link href="/feed">
-                FEED
+                CHAT
                 </Link>
             </button>
             
