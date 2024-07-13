@@ -17,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en"  >
-        <body className={`${inter.className} max-h-screen bg-base-200`  } >
+    <html lang="en" className="bg-base-300" >
+        <body className={`${inter.className} max-h-screen bg-base-300`  } >
           <Nav/>
           {children}</body>
     </html>

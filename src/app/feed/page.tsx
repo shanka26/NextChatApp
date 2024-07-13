@@ -36,8 +36,8 @@ export default function Page() {
     
     <div  className="grid grid-cols-12 max-h-screen justify-center bg-base-300">
 
-      <div className="col-span-auto md:col-span-2  "></div>
-      <div className=" col-span-12 md:col-span-8 flex flex-col w-full max-h-[92vh] md:max-h-[90vh] justify-between overflow-hidden  ">
+      <div className="col-span-1 sm:col-span-3 lg:col-span-4 bg-base-300 "></div>
+      <div className=" col-span-10 sm:col-span-6 lg:col-span-4 flex flex-col w-full max-h-[87vh]  justify-between overflow-hidden  ">
         <div ref={chatRef} className="flex-grow h-screen  overflow-y-auto p-2 items-end ">
           {messageList.map((post: any, i: number) => (
             <div key={i} className="p-2">
@@ -46,13 +46,13 @@ export default function Page() {
           ))}
         </div>
 
-        <div className="fixed bottom-0 flex border w-[100vw] md:w-[66.7%] col-span-12 md:col-span-8 md:max-h-[10vh] p-3  justify-between gap-2 bg-primary rounded-sma">
+        <div className="fixed bottom-0 flex border w-[83.3%] sm:w-[50%] lg:w-[33.4%] p-3  justify-between gap-2 bg-primary rounded-sma ">
           <input
             disabled={!loggedIn}
             value={loggedIn ? message : "Please Sign In"}
             placeholder="Type Message..."
             onChange={(e) => setMessage(e.target.value)}
-            className="p-2 input text-left input-ghost rounded w-5/6 text-secondary bg-primary-content"
+            className="p-2 input text-left input-ghost rounded w-5/6 text-base-content  focus:text-base-content bg-base-300"
           />
           <button
             className={`btn btn-solid btn-secondary p-3 rounded-lg px-6 w-1/6 `}
@@ -66,7 +66,7 @@ export default function Page() {
           </button>
         </div>
       </div>
-      <div className="  col-span-auto md:col-span-2"></div>
+      <div className="  col-span-1 sm:col-span-3 lg:col-span-4"></div>
     </div>
   );
 }
