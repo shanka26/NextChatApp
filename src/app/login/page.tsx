@@ -78,7 +78,7 @@ const setLoggedIn = userStore((state:any)=>state.setLoggedIn)
       
       
       
-      <div className=" bg-base-300 text-base-content shadow-lg flex flex-col border-[primary] rounded-md  h-[44vh] md:h-[40vh] w-[280px] md:w-[400px] p-4 gap-2 md:p-8 md:gap-4 text-center "> 
+      <div className=" bg-base-300 text-base-content shadow-lg flex flex-col border-[primary] rounded-md  h-[46vh] w-[280px] md:w-[400px] p-4 gap-2 md:p-8 md:gap-4 text-center "> 
       
       <h1 className="text-2xl md:text-3xl p-2 md:p-4">Sign In</h1>
       
