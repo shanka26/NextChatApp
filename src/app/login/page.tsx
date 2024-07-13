@@ -115,7 +115,7 @@ const setLoggedIn = userStore((state:any)=>state.setLoggedIn)
         <button className="btn btn-sm  btn-primary" 
         onClick={handleRegister}>Register</button>
         <button className="btn btn-sm btn-outline btn-primary" 
-        onClick={async()=>{handleSignIn}}>Sign In</button>
+        onClick={handleSignIn}>Sign In</button>
       </div>
       
       

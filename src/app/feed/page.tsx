@@ -27,7 +27,7 @@ export default function Page() {
   useEffect(() => {
     const interval = setInterval(() => {
       fetchPosts();
-    }, 500);
+    }, 1000);
     chatRef?.current?.scrollTop?chatRef.current.scrollTop = chatRef.current.scrollHeight:null
     return () => clearInterval(interval);
   }, );
@@ -37,7 +37,7 @@ export default function Page() {
     <div  className="grid grid-cols-12 max-h-screen justify-center bg-base-300">
 
       <div className="col-span-1 sm:col-span-3 lg:col-span-4 bg-base-300 "></div>
-      <div className=" col-span-10 sm:col-span-6 lg:col-span-4 flex flex-col w-full max-h-[87vh]  justify-between overflow-hidden  ">
+      <div className=" col-span-10 sm:col-span-6 lg:col-span-4 flex flex-col w-full max-h-[87vh]  content-center overflow-hidden  ">
         <div ref={chatRef} className="flex-grow h-screen  overflow-y-auto p-2 items-end ">
           {messageList.map((post: any, i: number) => (
             <div key={i} className="p-2">
@@ -46,7 +46,9 @@ export default function Page() {
           ))}
         </div>
 
-        <div className="fixed bottom-0 flex border w-[83.3%] sm:w-[50%] lg:w-[33.4%] p-3  justify-between gap-2 bg-primary rounded-sma ">
+       
+      </div>
+      <div className="fixed bottom-0 sm:left-[20%] lg:left-[33.4%] flex border w-[100%] sm:w-[60%] lg:w-[33.4%] p-3  justify-between gap-2 bg-primary rounded-sma ">
           <input
             disabled={!loggedIn}
             value={loggedIn ? message : "Please Sign In"}
@@ -65,7 +67,6 @@ export default function Page() {
             Send
           </button>
         </div>
-      </div>
       <div className="  col-span-1 sm:col-span-3 lg:col-span-4"></div>
     </div>
   );

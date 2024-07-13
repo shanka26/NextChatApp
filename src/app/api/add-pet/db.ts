@@ -11,19 +11,17 @@ import PocketBase, { BaseAuthStore } from 'pocketbase';
 // example create data
 const getPosts = async ()=>{
   const pb = new PocketBase('https://theonenext.pockethost.io/');
-const resultList = await pb.collection('messages').getList(1, 50, {
-  filter: 'created >= "2023-01-01 00:00:00" ',
-});
-return resultList.items
+const resultList = await pb.collection('messages').getFullList();
+return resultList
 
 }
 
 const getMyPosts = async (username:string)=>{
   const pb = new PocketBase('https://theonenext.pockethost.io/');
-const resultList = await pb.collection('messages').getList(1, 50, {
+const resultList = await pb.collection('messages').getFullList( {
   filter: 'author = '+username,
 });
-return resultList.items
+return resultList
 
 }
 
@@ -32,6 +30,7 @@ return resultList.items
 
 const createMessage = async (message:string)=>{
   const pb = new PocketBase('https://theonenext.pockethost.io/');
+  // const pb = new PocketBase('https://theonenext.pockethost.io/');
   let data = {
     
     "message": message,
