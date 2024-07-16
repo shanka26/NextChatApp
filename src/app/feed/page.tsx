@@ -37,7 +37,7 @@ export default function Page() {
     <div  className="grid grid-cols-12 max-h-screen justify-center bg-base-300">
 
       <div className="col-span-1 sm:col-span-3 lg:col-span-4 bg-base-300 "></div>
-      <div className=" col-span-10 sm:col-span-6 lg:col-span-4 flex flex-col w-full max-h-[87vh]  content-center overflow-hidden  ">
+      <div className=" col-span-10 sm:col-span-6 lg:col-span-4 flex flex-col w-full max-h-[82vh]  content-center overflow-hidden  ">
         <div ref={chatRef} className="flex-grow h-screen  overflow-y-auto p-2 items-end ">
           {messageList.map((post: any, i: number) => (
             <div key={i} className="p-2">
